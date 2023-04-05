@@ -1,0 +1,38 @@
+version: '3.3'
+services:
+  # api:
+  #   container_name: api-service-${NODE_ENV}
+  #   build:
+  #     context: .
+  #     dockerfile: 'Dockerfile'
+  #   ports:
+  #     - '${PORT}:${PORT}'
+  #   volumes:
+  #     - .:/app
+  #   networks:
+  #     - server-network
+  #   links:
+  #     - mysqld
+  #   depends_on:
+  #     - mysqld
+  #   env_file:
+  #     - '.env'
+
+  mysqld:
+    image: mysql:8.0
+    container_name: database
+    cap_add:
+      - SYS_NICE
+    restart: always
+    environment:
+      MYSQL_DATABASE: db
+      MYSQL_USER: parking
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_PASSWORD: 123456
+    ports:
+      - '3306:3306'
+    volumes:
+      - /var/lib/mysql
+networks:
+  server-network:
+    driver: bridge
