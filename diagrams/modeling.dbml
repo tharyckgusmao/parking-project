@@ -1,0 +1,53 @@
+// Use DBML to define your database structure
+// Docs: https://www.dbml.org/docs
+
+Table company {
+  id  uuid [primary key]
+  name varchar
+  cnpj varchar
+  address varchar 
+  phone varchar
+  qty_vacancy_cars integer
+  qty_vacancy_motors integer
+  created_at timestamp
+  updated_at timestamp
+
+}
+
+
+Table vehicle {
+  id  uuid [primary key]
+  brand varchar
+  model varchar
+  color varchar
+  plate varchar
+  type varchar
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table control_parking {
+  id  uuid [primary key]
+  company_id uuid
+  vehicle_id uuid
+  event tinyint
+  created_at timestamp
+  updated_at timestamp
+}
+
+
+
+Table users {
+  id  uuid [primary key]
+  company_id uuid 
+  email varchar
+  name varchar
+  password varchar
+  created_at timestamp
+  updated_at timestamp
+}
+
+Ref: users.company_id < company.id   
+
+Ref: control_parking.company_id > company.id   
+Ref: control_parking.company_id > vehicle.id   

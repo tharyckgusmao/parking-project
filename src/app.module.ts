@@ -2,6 +2,9 @@ import { Module } from '@nestjs/common';
 import { DatabaseModule } from './shared/database/database.module';
 import { ConfigModule } from '@nestjs/config';
 import { validate } from './shared/config/validationEnv';
+import { UserModule } from './app/user/user.module';
+import { CompanyModule } from './app/company/company.module';
+import { VehicleModule } from './app/vehicle/vehicle.module';
 
 @Module({
   imports: [
@@ -12,6 +15,9 @@ import { validate } from './shared/config/validationEnv';
       ignoreEnvFile: process.env.NODE_ENV === 'production',
     }),
     DatabaseModule,
+    UserModule,
+    CompanyModule,
+    VehicleModule,
   ],
   controllers: [],
   providers: [],

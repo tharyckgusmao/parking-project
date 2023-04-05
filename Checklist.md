@@ -1,10 +1,10 @@
 
-[ ] Iniciar Projeto nest
-[ ] Criar dockercomposer
-[ ] Criar Dockerfile
-[ ] Criar e configurar Banco
-[ ] Configurar Swagger
+[x] Iniciar Projeto nest
+[x] Criar dockercomposer
+[x] Criar Dockerfile
+[x] Criar e configurar Banco
 [ ] Criar CRUD para estabelecimento
+[ ] Configurar Swagger
 [ ] Criar associação de users a companias
 [ ] Criar CRUD para users
 [ ] Criar CRUD para veiculos
