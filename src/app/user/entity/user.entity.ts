@@ -1,3 +1,5 @@
+import * as bcrypt from 'bcrypt';
+import { MaxLength } from 'class-validator';
 import { CompanyEntity } from 'src/app/company/entity/company.entity';
 import {
   BeforeInsert,
@@ -6,18 +8,17 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import * as bcrypt from 'bcrypt';
-import { MaxLength } from 'class-validator';
 
 @Entity({ name: 'users' })
 export class UserEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => CompanyEntity, (company) => company, { nullable: true })
+  @ManyToOne(() => CompanyEntity, (company) => company.id, { nullable: true })
   @JoinColumn({ name: 'company_id' })
   company: CompanyEntity;
 

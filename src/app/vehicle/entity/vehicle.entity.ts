@@ -1,7 +1,10 @@
+import { CompanyEntity } from 'src/app/company/entity/company.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -24,6 +27,13 @@ export class VehicleEntity {
 
   @Column()
   type: string;
+
+  @ManyToOne(() => CompanyEntity, (company) => company.id, { nullable: true })
+  @JoinColumn({ name: 'company_id' })
+  company: CompanyEntity;
+
+  @Column()
+  company_id: string;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: string;

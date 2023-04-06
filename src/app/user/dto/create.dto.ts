@@ -1,9 +1,16 @@
-import { IsNotEmpty, Matches, MaxLength, MinLength } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  Matches,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 
 export class CreateDto {
   @IsNotEmpty()
   company_id: string;
 
+  @IsEmail()
   @IsNotEmpty()
   email: string;
 

@@ -4,24 +4,25 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { CompanyEntity } from '../../company/entity/company.entity';
 
 @Entity({ name: 'parking' })
-export class ControlParking {
+export class Parking {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => CompanyEntity, (company) => company.id)
+  @ManyToMany(() => CompanyEntity, (company) => company.id)
   @JoinColumn({ name: 'company_id' })
   company: CompanyEntity;
 
   @Column()
   company_id: string;
 
-  @ManyToOne(() => VehicleEntity, (vehicle) => vehicle.id)
+  @ManyToMany(() => VehicleEntity, (vehicle) => vehicle.id)
   @JoinColumn({ name: 'vehicle_id' })
   vehicle: VehicleEntity;
 

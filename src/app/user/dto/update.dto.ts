@@ -1,4 +1,5 @@
 import {
+  IsEmail,
   IsNotEmpty,
   IsOptional,
   Matches,
@@ -11,6 +12,7 @@ export class UpdateDto {
   @IsOptional()
   company_id: string;
 
+  @IsEmail()
   @IsOptional()
   @IsNotEmpty()
   email: string;

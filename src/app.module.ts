@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
-import { DatabaseModule } from './shared/database/database.module';
 import { ConfigModule } from '@nestjs/config';
-import { validate } from './shared/config/validationEnv';
-import { UserModule } from './app/user/user.module';
+import { AuthModule } from './app/auth/auth.module';
 import { CompanyModule } from './app/company/company.module';
+import { UserModule } from './app/user/user.module';
 import { VehicleModule } from './app/vehicle/vehicle.module';
+import { validate } from './shared/config/validationEnv';
+import { DatabaseModule } from './shared/database/database.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { VehicleModule } from './app/vehicle/vehicle.module';
     }),
     DatabaseModule,
     UserModule,
+    AuthModule,
     CompanyModule,
     VehicleModule,
   ],

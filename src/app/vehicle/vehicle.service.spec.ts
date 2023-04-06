@@ -7,6 +7,15 @@ import { VehicleService } from './vehicle.service';
 import { CreateDto } from './dto/create.dto';
 import { VehicleEntity } from './entity/vehicle.entity';
 
+const companyId = '651084df-b024-4d76-8968-638dbe8c3954';
+const vehicleCreateMock = {
+  company_id: '123',
+  brand: 'ford',
+  model: 'v2',
+  color: 'vermelho',
+  plate: '123egfr',
+  type: 'car',
+};
 const vehiclesMock = [
   {
     brand: 'ford',
@@ -15,6 +24,17 @@ const vehiclesMock = [
     plate: '123egfr',
     type: 'car',
     id: '3fc58713-0b88-41b7-8c1c-3bc4f8909c84',
+    company: {
+      id: '651084df-b024-4d76-8968-638dbe8c3954',
+      name: 'tharyck',
+      cnpj: '10000000000000',
+      address: 'Rua henrique gorceix 1770',
+      phone: '31982695343',
+      qtyVacancyCars: 20,
+      qtyVacancyMotors: 40,
+      createdAt: '2023-04-05T20:29:15.473Z',
+      updatedAt: '2023-04-05T20:29:15.473Z',
+    },
     createdAt: '2023-04-06T05:08:20.793Z',
     updatedAt: '2023-04-06T05:08:20.793Z',
   },
@@ -24,6 +44,17 @@ const vehiclesMock = [
     color: 'vermelho',
     plate: '123egfr',
     type: 'car',
+    company: {
+      id: '651084df-b024-4d76-8968-638dbe8c3954',
+      name: 'tharyck',
+      cnpj: '10000000000000',
+      address: 'Rua henrique gorceix 1770',
+      phone: '31982695343',
+      qtyVacancyCars: 20,
+      qtyVacancyMotors: 40,
+      createdAt: '2023-04-05T20:29:15.473Z',
+      updatedAt: '2023-04-05T20:29:15.473Z',
+    },
     id: '3fc58723-0b88-41b7-8c1c-3bc4f8909c84',
     createdAt: '2023-04-06T05:08:20.793Z',
     updatedAt: '2023-04-06T05:08:20.793Z',
@@ -77,11 +108,11 @@ describe('VehicleService', () => {
         items: { vehicles: vechicleMock },
       });
 
-      jest.spyOn(vehicleRepository, 'find').mockResolvedValue(vehiclesMock);
+      jest.spyOn(vehicleRepository, 'find').mockResolvedValue(vechicleMock);
       jest.spyOn(vehicleRepository, 'count').mockResolvedValue(2);
 
       // Act
-      const result = await service.findAll(params);
+      const result = await service.findAll(params, companyId);
       // Assert
 
       expect(result).toEqual(payloadResponse);
@@ -110,6 +141,7 @@ describe('VehicleService', () => {
 
       const result = await service.findOneOrFail(
         '651084df-b024-4d76-8968-638dbe8c3954',
+        '651084df-b024-4d76-8968-638dbe8c3954',
       );
 
       //Assert
@@ -125,7 +157,10 @@ describe('VehicleService', () => {
 
       //Assert
       expect(
-        service.findOneOrFail('651084df-b024-4d76-8968-638dbe8c3954'),
+        service.findOneOrFail(
+          '651084df-b024-4d76-8968-638dbe8c3954',
+          companyId,
+        ),
       ).rejects.toThrowError(NotFoundException);
     });
   });
@@ -141,7 +176,7 @@ describe('VehicleService', () => {
       jest.spyOn(vehicleRepository, 'create').mockReturnValue(vehiclesMockItem);
 
       //Act
-      const result = await service.create(data);
+      const result = await service.create(data, companyId);
 
       //Assert
       expect(result).toEqual(vehiclesMockItem);
@@ -156,7 +191,7 @@ describe('VehicleService', () => {
       jest.spyOn(vehicleRepository, 'save').mockRejectedValueOnce(new Error());
 
       //Assert
-      expect(service.create(data)).rejects.toThrowError();
+      expect(service.create(data, companyId)).rejects.toThrowError();
     });
   });
   describe('update', () => {
@@ -170,7 +205,7 @@ describe('VehicleService', () => {
       jest.spyOn(vehicleRepository, 'merge').mockReturnValue(vehiclesMockItem);
 
       //Act
-      const result = await service.update(vehiclesMockItem.id, data);
+      const result = await service.update(vehiclesMockItem.id, data, companyId);
 
       //Assert
       expect(result).toEqual(vehiclesMockItem);
@@ -185,7 +220,10 @@ describe('VehicleService', () => {
 
       //Assert
       expect(
-        service.findOneOrFail('651084df-b024-4d76-8968-638dbe8c3954'),
+        service.findOneOrFail(
+          '651084df-b024-4d76-8968-638dbe8c3954',
+          companyId,
+        ),
       ).rejects.toThrowError(NotFoundException);
     });
 
@@ -197,7 +235,7 @@ describe('VehicleService', () => {
 
       //Assert
       expect(
-        service.update('651084df-b024-4d76-8968-638dbe8c3954', data),
+        service.update('651084df-b024-4d76-8968-638dbe8c3954', data, companyId),
       ).rejects.toThrowError();
     });
   });
@@ -216,6 +254,7 @@ describe('VehicleService', () => {
       //Act
       const result = await service.deleteById(
         '651084df-b024-4d76-8968-638dbe8c3954',
+        companyId,
       );
       //Assert
       expect(result).toEqual({});
@@ -231,7 +270,7 @@ describe('VehicleService', () => {
 
       //Assert
       expect(
-        service.deleteById('651084df-b024-4d76-8968-638dbe8c3954'),
+        service.deleteById('651084df-b024-4d76-8968-638dbe8c3954', companyId),
       ).rejects.toThrowError(NotFoundException);
     });
     it('Should throw an exception', async () => {
@@ -242,7 +281,7 @@ describe('VehicleService', () => {
 
       //Assert
       expect(
-        service.deleteById('651084df-b024-4d76-8968-638dbe8c3954'),
+        service.deleteById('651084df-b024-4d76-8968-638dbe8c3954', companyId),
       ).rejects.toThrowError();
     });
   });

@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { OrderEnum } from 'src/shared/dto/orderParam';
 import { createResponseWithObject } from 'src/shared/utils/response';
-import { Repository } from 'typeorm';
+import { Equal, Repository } from 'typeorm';
 import { CreateDto } from './dto/create.dto';
 import { VehicleEntity } from './entity/vehicle.entity';
 
@@ -13,13 +13,14 @@ export class VehicleService {
     private readonly vehicleRepository: Repository<VehicleEntity>,
   ) {}
 
-  async findAll({
-    current = 0,
-    order = OrderEnum.ASC,
-    perPage = 10,
-    sort = 'createdAt',
-  }) {
+  async findAll(
+    { current = 0, order = OrderEnum.ASC, perPage = 10, sort = 'createdAt' },
+    companyId: string,
+  ) {
     const vehicles = await this.vehicleRepository.find({
+      where: {
+        company: Equal(companyId),
+      },
       order: {
         [sort]: order,
       },
@@ -36,25 +37,27 @@ export class VehicleService {
     });
   }
 
-  async findOneOrFail(id: string) {
+  async findOneOrFail(id: string, companyId: string) {
     try {
-      return await this.vehicleRepository.findOneOrFail({ where: { id } });
+      return await this.vehicleRepository.findOneOrFail({
+        where: { id, company: Equal(companyId) },
+      });
     } catch (error) {
       throw new NotFoundException(error.message);
     }
   }
-  async create(data: CreateDto) {
+  async create(data: CreateDto, companyId: string) {
     return await this.vehicleRepository.save(
-      this.vehicleRepository.create(data),
+      this.vehicleRepository.create({ ...data, company_id: companyId }),
     );
   }
-  async update(id: string, data: CreateDto) {
-    const vehicle = await this.findOneOrFail(id);
+  async update(id: string, data: CreateDto, companyId: string) {
+    const vehicle = await this.findOneOrFail(id, companyId);
     this.vehicleRepository.merge(vehicle, data);
     return await this.vehicleRepository.save(vehicle);
   }
-  async deleteById(id: string) {
-    await this.findOneOrFail(id);
+  async deleteById(id: string, companyId: string) {
+    await this.findOneOrFail(id, companyId);
     return await this.vehicleRepository.delete(id);
   }
 }

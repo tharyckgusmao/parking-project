@@ -1,4 +1,5 @@
 import { UserEntity } from 'src/app/user/entity/user.entity';
+import { VehicleEntity } from 'src/app/vehicle/entity/vehicle.entity';
 import {
   Column,
   CreateDateColumn,
@@ -6,7 +7,6 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { ControlParking } from '../../parking/entity/parking.entity';
 
 @Entity({ name: 'companies' })
 export class CompanyEntity {
@@ -34,8 +34,11 @@ export class CompanyEntity {
   @OneToMany(() => UserEntity, (user) => user.id)
   user: UserEntity[];
 
-  @OneToMany(() => ControlParking, (control) => control.id)
-  control: ControlParking[];
+  @OneToMany(() => VehicleEntity, (vehicle) => vehicle.id)
+  vehicle: UserEntity[];
+
+  // @OneToMany(() => ControlParking, (control) => control.id)
+  // control: ControlParking[];
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: string;
