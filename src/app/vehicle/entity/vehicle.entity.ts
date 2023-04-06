@@ -19,15 +19,15 @@ export class VehicleEntity {
   @Column()
   color: string;
 
-  @Column()
+  @Column({ length: 7 })
   plate: string;
 
   @Column()
   type: string;
 
   @CreateDateColumn({ name: 'created_at' })
-  created_at: string;
+  createdAt: string;
 
   @CreateDateColumn({ name: 'updated_at' })
-  updated_at: string;
+  updatedAt: string;
 }
