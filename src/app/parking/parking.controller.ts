@@ -1,7 +1,9 @@
 import { Controller, Param, ParseUUIDPipe, Put } from '@nestjs/common';
 import { ParkingService } from './parking.service';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('api/v1/parking')
+@ApiTags('Parking')
 export class ParkingController {
   constructor(private readonly parkingService: ParkingService) {}
 

@@ -1,3 +1,4 @@
+import { ApiPropertyOptional } from '@nestjs/swagger';
 import { IsEnum, IsOptional } from 'class-validator';
 
 export enum OrderEnum {
@@ -8,5 +9,6 @@ export enum OrderEnum {
 export class OrderParam {
   @IsEnum(OrderEnum, { message: 'order needs to be asc or desc' })
   @IsOptional()
+  @ApiPropertyOptional({ default: 'ASC' })
   order?: OrderEnum;
 }

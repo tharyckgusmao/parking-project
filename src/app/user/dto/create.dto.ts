@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsEmail,
   IsNotEmpty,
@@ -8,10 +9,12 @@ import {
 
 export class CreateDto {
   @IsNotEmpty()
+  @ApiProperty()
   company_id: string;
 
   @IsEmail()
   @IsNotEmpty()
+  @ApiProperty()
   email: string;
 
   @IsNotEmpty()
@@ -25,5 +28,6 @@ export class CreateDto {
   @MaxLength(12, {
     message: 'The password must contain a maximum of 12 characters',
   })
+  @ApiProperty()
   password: string;
 }

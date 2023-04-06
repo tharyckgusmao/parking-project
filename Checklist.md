@@ -24,7 +24,7 @@
     [x] DELETE
 [x] Implementar Guard JWT
 [x] Criar fluxo de entrada e saida
-[ ] Configurar Swagger
+[x] Configurar Swagger
 [ ] Deploy na gcp e fly.io
 [ ] Criar endpoints de Report
 
