@@ -1,5 +1,7 @@
 import { CompanyEntity } from 'src/app/company/entity/company.entity';
 import {
+  BeforeInsert,
+  BeforeUpdate,
   Column,
   CreateDateColumn,
   Entity,
@@ -7,6 +9,8 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import * as bcrypt from 'bcrypt';
+import { MaxLength } from 'class-validator';
 
 @Entity({ name: 'users' })
 export class UserEntity {
@@ -24,7 +28,18 @@ export class UserEntity {
   name: string;
 
   @Column()
+  @MaxLength(12)
   password: string;
+  @BeforeInsert()
+  @BeforeUpdate()
+  async updatePassword(): Promise<void> {
+    if (this.password.length < 13) {
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(this.password, salt);
+
+      this.password = hashedPassword;
+    }
+  }
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: string;
