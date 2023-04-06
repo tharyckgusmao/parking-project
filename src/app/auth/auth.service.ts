@@ -9,7 +9,7 @@ import { UserEntity } from '../user/entity/user.entity';
 import { LoginDto } from './dto/login.dto';
 import { RefreshDto } from './dto/refresh.dto';
 
-interface ILoginReturn {
+export interface ILoginReturn {
   user: UserEntity;
   accessToken: string;
   refreshToken: string;
@@ -45,7 +45,7 @@ export class AuthService {
       this.configService.get('ACCESS_JWT_SECRET', '123'),
       {
         subject: user.id,
-        expiresIn: `${this.configService.get('ACCESS_TOKEN_TTL')}s`,
+        expiresIn: `${this.configService.get('ACCESS_TOKEN_TTL', 60)}s`,
       },
     );
 
@@ -58,7 +58,7 @@ export class AuthService {
       this.configService.get('REFRESH_JWT_SECRET', '123'),
       {
         subject: user.id,
-        expiresIn: `${this.configService.get('REFRESH_TOKEN_TTL')}s`,
+        expiresIn: `${this.configService.get('REFRESH_TOKEN_TTL', 60)}s`,
       },
     );
 
@@ -85,7 +85,9 @@ export class AuthService {
     return {
       user,
       accessToken: accessToken,
-      accessTokenExpiresIn: Number(this.configService.get('ACCESS_TOKEN_TTL')),
+      accessTokenExpiresIn: Number(
+        this.configService.get('ACCESS_TOKEN_TTL', 60),
+      ),
       refreshToken: refreshToken,
       refreshTokenExpiresIn: Number(
         this.configService.get('REFRESH_TOKEN_TTL'),
@@ -108,10 +110,12 @@ export class AuthService {
     return {
       user: user,
       accessToken: newAccessToken,
-      accessTokenExpiresIn: Number(this.configService.get('ACCESS_TOKEN_TTL')),
+      accessTokenExpiresIn: Number(
+        this.configService.get('ACCESS_TOKEN_TTL', 60),
+      ),
       refreshToken: newRefreshToken,
       refreshTokenExpiresIn: Number(
-        this.configService.get('REFRESH_TOKEN_TTL'),
+        this.configService.get('REFRESH_TOKEN_TTL', 60),
       ),
     };
   }
