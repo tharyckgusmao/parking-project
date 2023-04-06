@@ -6,7 +6,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { ControlParking } from './controlParking.entity';
+import { ControlParking } from '../../parking/entity/parking.entity';
 
 @Entity({ name: 'companies' })
 export class CompanyEntity {

@@ -7,9 +7,9 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { CompanyEntity } from './company.entity';
+import { CompanyEntity } from '../../company/entity/company.entity';
 
-@Entity({ name: 'control_parking' })
+@Entity({ name: 'parking' })
 export class ControlParking {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -18,9 +18,15 @@ export class ControlParking {
   @JoinColumn({ name: 'company_id' })
   company: CompanyEntity;
 
+  @Column()
+  company_id: string;
+
   @ManyToOne(() => VehicleEntity, (vehicle) => vehicle.id)
   @JoinColumn({ name: 'vehicle_id' })
   vehicle: VehicleEntity;
+
+  @Column()
+  vehicle_id: string;
 
   @Column({ type: 'tinyint', width: 2 })
   event: number;

@@ -17,9 +17,12 @@ export class UserEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => CompanyEntity, (company) => company.id)
+  @ManyToOne(() => CompanyEntity, (company) => company, { nullable: true })
   @JoinColumn({ name: 'company_id' })
   company: CompanyEntity;
+
+  @Column()
+  company_id: string;
 
   @Column({ unique: true })
   email: string;
