@@ -10,22 +10,23 @@
     [x] PUT
     [x] POST
     [x] DELETE
-[] Criar CRUD users
-    [] GET
-        [] Filter and Sort
-    [] PUT
-    [] POST
-    [] DELETE
-[ ] Configurar Swagger
+[x] Criar CRUD users
+    [x] GET
+        [x] Filter and Sort
+    [x] PUT
+    [x] POST
+    [x] DELETE
 [x] Criar CRUD para veiculos
     [x] GET
         [x] Filter and Sort
     [x] PUT
     [x] POST
     [x] DELETE
-[ ] Implementar Guard JWT
-[ ] Criar endpoints de Report
+[x] Implementar Guard JWT
+[x] Criar fluxo de entrada e saida
+[ ] Configurar Swagger
 [ ] Deploy na gcp e fly.io
+[ ] Criar endpoints de Report
 
 -extras-
 [ ] Criar Front com suporte a relatorios

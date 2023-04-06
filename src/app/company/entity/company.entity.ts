@@ -1,4 +1,4 @@
-import { Parking } from 'src/app/parking/entity/parking.entity';
+import { ParkingEntity } from 'src/app/parking/entity/parking.entity';
 import { UserEntity } from 'src/app/user/entity/user.entity';
 import { VehicleEntity } from 'src/app/vehicle/entity/vehicle.entity';
 import {
@@ -38,8 +38,8 @@ export class CompanyEntity {
   @OneToMany(() => VehicleEntity, (vehicle) => vehicle.id)
   vehicle: UserEntity[];
 
-  @OneToMany(() => Parking, (control) => control.id)
-  control: Parking[];
+  @OneToMany(() => ParkingEntity, (parking) => parking.id)
+  parking: ParkingEntity[];
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: string;

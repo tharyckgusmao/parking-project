@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './app/auth/auth.module';
 import { CompanyModule } from './app/company/company.module';
+import { ParkingModule } from './app/parking/parking.module';
 import { UserModule } from './app/user/user.module';
 import { VehicleModule } from './app/vehicle/vehicle.module';
 import { validate } from './shared/config/validationEnv';
@@ -20,6 +21,7 @@ import { DatabaseModule } from './shared/database/database.module';
     AuthModule,
     CompanyModule,
     VehicleModule,
+    ParkingModule,
   ],
   controllers: [],
   providers: [],
