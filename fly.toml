@@ -1,0 +1,51 @@
+# fly.toml file generated for parking-api on 2023-04-07T10:12:17-03:00
+
+app = "parking-api"
+kill_signal = "SIGINT"
+kill_timeout = 5
+primary_region = "gru"
+processes = []
+
+
+[env]
+  ACCESS_JWT_SECRET = "S98dh#$k2l+85dg<njbdXz60921ba7bc7a57c2047fe41fg67"
+  ACCESS_TOKEN_TTL = "86400"
+  DB_DATABASE = "parking"
+  DB_HOST = "mysql-parking.internal"
+  DB_PASSWORD = "123456"
+  DB_PORT = "3306"
+  DB_USERNAME = "parking"
+  NODE_ENV = "staging"
+  PORT = "8080"
+  REFRESH_JWT_SECRET = "60928ba7bc7a57c204f57fe41a9335a387ddf4bbd1b6387e0"
+  REFRESH_TOKEN_TTL = "604800"
+
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
+
+[[services]]
+  http_checks = []
+  internal_port = 8080
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+  [services.concurrency]
+    hard_limit = 65
+    soft_limit = 60
+    type = "connections"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [[services.tcp_checks]]
+    grace_period = "1s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"

@@ -4,11 +4,9 @@ WORKDIR "/app"
 
 COPY . .
 
-RUN npm install
+RUN npm install --production=false
 
 RUN npm run build
-
-RUN npm prune --production
 
 FROM node:16-alpine AS production
 

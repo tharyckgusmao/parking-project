@@ -1,22 +1,22 @@
 version: '3.3'
 services:
-  # api:
-  #   container_name: api-service-${NODE_ENV}
-  #   build:
-  #     context: .
-  #     dockerfile: 'Dockerfile'
-  #   ports:
-  #     - '${PORT}:${PORT}'
-  #   volumes:
-  #     - .:/app
-  #   networks:
-  #     - server-network
-  #   links:
-  #     - mysqld
-  #   depends_on:
-  #     - mysqld
-  #   env_file:
-  #     - '.env'
+  api:
+    container_name: api-service-${NODE_ENV}
+    build:
+      context: .
+      dockerfile: 'Dockerfile'
+    ports:
+      - '${PORT}:${PORT}'
+    volumes:
+      - .:/app
+    networks:
+      - server-network
+    links:
+      - mysqld
+    depends_on:
+      - mysqld
+    env_file:
+      - '.env'
 
   mysqld:
     image: mysql:8.0
