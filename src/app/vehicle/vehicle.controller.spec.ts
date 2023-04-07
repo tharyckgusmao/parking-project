@@ -9,11 +9,12 @@ import { UpdateDto } from './dto/update.dto';
 import { VehicleEntity } from './entity/vehicle.entity';
 import { VehicleController } from './vehicle.controller';
 import { VehicleService } from './vehicle.service';
-import { REQUEST } from '@nestjs/core';
 const req = {
-  user: '323e779b-6e5f-41bc-8112-58f115c3c2a3',
-  company_id: '323e779b-6e5f-41bc-8112-58f115c3c2a3',
-};
+  user: {
+    id: '323e779b-6e5f-41bc-8112-58f115c3c2a3',
+    company_id: '0c49aae8-698a-4a5d-b3f8-8bcf9641bf08',
+  },
+} as unknown as Request;
 
 const vehicleMock = [
   {
@@ -86,8 +87,7 @@ describe('VehicleController', () => {
       jest.spyOn(service, 'findAll').mockResolvedValue(payloadResponse);
 
       // Act
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+
       const result = await controller.getAll(params, req);
       // Assert
 
@@ -101,8 +101,7 @@ describe('VehicleController', () => {
       jest.spyOn(controller, 'getAll').mockRejectedValue(new Error());
 
       //Assert
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+
       expect(controller.getAll(params, req)).rejects.toThrowError();
     });
   });
@@ -116,8 +115,7 @@ describe('VehicleController', () => {
       jest.spyOn(service, 'findOneOrFail').mockResolvedValue(payloadResponse);
 
       // Act
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+
       const result = await controller.get(param.id, req);
 
       // Assert
@@ -133,8 +131,7 @@ describe('VehicleController', () => {
       jest.spyOn(controller, 'get').mockRejectedValue(new Error());
 
       //Assert
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+
       expect(controller.get(param.id, req)).rejects.toThrowError();
     });
   });
@@ -154,8 +151,7 @@ describe('VehicleController', () => {
       jest.spyOn(service, 'create').mockResolvedValue(payloadResponse);
 
       // Act
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+
       const result = await controller.create(payloadBodyDto, req);
 
       // Assert
@@ -196,8 +192,7 @@ describe('VehicleController', () => {
       jest.spyOn(service, 'update').mockResolvedValue(payloadResponse);
 
       // Act
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+
       const result = await controller.update(param, payloadBodyDto, req);
 
       // Assert
@@ -239,8 +234,7 @@ describe('VehicleController', () => {
 
       // Assert
       expect(errors.length).toEqual(0);
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+
       expect(controller.update(param, payloadBody, req)).rejects.toThrowError();
       expect(service.update).toHaveBeenCalledTimes(0);
     });
@@ -254,8 +248,7 @@ describe('VehicleController', () => {
       jest.spyOn(service, 'deleteById').mockResolvedValue({} as DeleteResult);
 
       // Act
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+
       const result = await controller.delete(param.id, req);
 
       // Assert
@@ -270,8 +263,7 @@ describe('VehicleController', () => {
       jest.spyOn(controller, 'delete').mockRejectedValue(new Error());
 
       //Assert
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+
       expect(controller.delete(param.id, req)).rejects.toThrowError();
     });
   });

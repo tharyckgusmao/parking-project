@@ -33,6 +33,7 @@ export class ParkingService {
     try {
       const vehicle = await this.vehicleRepository.findOneByOrFail({
         id: vehicleId,
+        company_id: companyId,
       });
 
       const company = await this.companyRepository.findOneByOrFail({

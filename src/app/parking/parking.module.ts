@@ -19,6 +19,6 @@ import { ParkingService } from './parking.service';
 })
 export class ParkingModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthenticationMiddleware).forRoutes();
+    consumer.apply(AuthenticationMiddleware).forRoutes(ParkingController);
   }
 }

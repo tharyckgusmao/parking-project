@@ -26,8 +26,11 @@
 [x] Criar fluxo de entrada e saida
 [x] Configurar Swagger
 [ ] Deploy na gcp e fly.io
-[ ] Criar endpoints de Report
+[x] Criar endpoints de Report
+    [x] Listagem de duração no dia range
+    [x] Listagem de eventos para veiculo
+    [x] Listagem agrupadas dos veiculos no estacionamento por dia
 
 -extras-
 [ ] Criar Front com suporte a relatorios
-[ ] Deploy na gcp e fly.io
+[ ] Deploy fly.io

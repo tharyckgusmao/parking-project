@@ -7,6 +7,7 @@ import { UserModule } from './app/user/user.module';
 import { VehicleModule } from './app/vehicle/vehicle.module';
 import { validate } from './shared/config/validationEnv';
 import { DatabaseModule } from './shared/database/database.module';
+import { ReportsModule } from './app/reports/reports.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { DatabaseModule } from './shared/database/database.module';
     CompanyModule,
     VehicleModule,
     ParkingModule,
+    ReportsModule,
   ],
   controllers: [],
   providers: [],
