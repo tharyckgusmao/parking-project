@@ -16,7 +16,12 @@ import { Request } from 'express';
 import { CreateDto } from './dto/create.dto';
 import { QueryParams } from './dto/query.dto';
 import { VehicleService } from './vehicle.service';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { GetAllDoc } from './docs/getAll.doc';
 import { GetDoc } from './docs/get.doc';
 import { CreateDoc } from './docs/create.doc';
@@ -24,6 +29,7 @@ import { UpdateDoc } from './docs/update.doc';
 
 @Controller('/api/v1/vehicle')
 @ApiTags('Vehicle')
+@ApiBearerAuth()
 export class VehicleController {
   constructor(private readonly vehicleService: VehicleService) {}
   @Get()

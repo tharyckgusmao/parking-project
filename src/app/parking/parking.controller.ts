@@ -7,11 +7,12 @@ import {
   Req,
 } from '@nestjs/common';
 import { ParkingService } from './parking.service';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Request } from 'express';
 
 @Controller('api/v1/parking')
 @ApiTags('Parking')
+@ApiBearerAuth()
 export class ParkingController {
   constructor(private readonly parkingService: ParkingService) {}
 

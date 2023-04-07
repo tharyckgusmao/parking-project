@@ -144,8 +144,9 @@ Ver exemplos de payload de body no swagger ou na collection
 
 ### Faltas e Criticas
 - GCP
-- Adicionar 2E2
+- Adicionar Testes 2E2
 - Abstrair querys dos relatorios para views 
+- ACL para um controle de permissões mais maduro
 
 ### Agradecimento
 Quaisquer duvidas e feedback estou a disposição

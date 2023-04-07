@@ -7,13 +7,14 @@ import {
   Query,
   Req,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Request } from 'express';
 import { FilterDto } from './dto/filter.dto';
 import { ReportsService } from './reports.service';
 
 @Controller('/api/v1/reports')
 @ApiTags('reports')
+@ApiBearerAuth()
 export class ReportsController {
   constructor(private readonly reportsService: ReportsService) {}
 
