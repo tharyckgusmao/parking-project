@@ -1,18 +1,13 @@
-import { Injectable } from '@nestjs/common';
-import {
-  InjectConnection,
-  InjectDataSource,
-  InjectRepository,
-} from '@nestjs/typeorm';
-import { ParkingEntity } from '../parking/entity/parking.entity';
+import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
-import { VehicleEntity } from '../vehicle/entity/vehicle.entity';
 import { CompanyEntity } from '../company/entity/company.entity';
-import { FilterDto } from './dto/filter.dto';
+import { ParkingEntity } from '../parking/entity/parking.entity';
 import { vehicleEnum } from '../vehicle/dto/create.dto';
+import { VehicleEntity } from '../vehicle/entity/vehicle.entity';
+import { FilterDto } from './dto/filter.dto';
 type payloadInput = {
   companyId: string;
-  vehicleId: string;
+  vehicleId?: string;
 };
 export class ReportsService {
   constructor(
@@ -124,10 +119,7 @@ export class ReportsService {
     };
   }
 
-  async getListRange(
-    { companyId, vehicleId }: payloadInput,
-    filter: FilterDto,
-  ) {
+  async getListRange({ companyId }: payloadInput, filter: FilterDto) {
     const query = `
         WITH cte as (
             SELECT 

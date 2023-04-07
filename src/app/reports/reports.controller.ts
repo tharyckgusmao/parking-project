@@ -37,7 +37,6 @@ export class ReportsController {
   @Get('company/:companyId/range')
   async getRange(
     @Param('companyId', ParseUUIDPipe) companyId: string,
-    @Param('vehicleId', ParseUUIDPipe) vehicleId: string,
     @Req() req: Request,
     @Query() filter: FilterDto,
   ) {
@@ -45,10 +44,7 @@ export class ReportsController {
     if (company_id != companyId) {
       throw new NotFoundException();
     }
-    return await this.reportsService.getListRange(
-      { companyId, vehicleId },
-      filter,
-    );
+    return await this.reportsService.getListRange({ companyId }, filter);
   }
   @Get('company/:companyId/vehicle/:vehicleId/events')
   async getEvents(
