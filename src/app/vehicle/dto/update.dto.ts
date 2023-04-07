@@ -1,7 +1,9 @@
 import { IsEnum, IsNotEmpty, IsOptional, MaxLength } from 'class-validator';
 import { vehicleEnum } from './create.dto';
 import { ApiProperty } from '@nestjs/swagger';
+import ApiSchema from 'src/shared/decorator/ApiSchemaDecorator';
 
+@ApiSchema({ name: 'VehicleUpdateDto' })
 export class UpdateDto {
   @IsOptional()
   @ApiProperty()

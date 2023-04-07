@@ -6,7 +6,8 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
-
+import ApiSchema from 'src/shared/decorator/ApiSchemaDecorator';
+@ApiSchema({ name: 'UserCreateDto' })
 export class CreateDto {
   @IsNotEmpty()
   @ApiProperty()

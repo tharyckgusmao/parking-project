@@ -51,6 +51,7 @@ $ npm run test
 
 Recomendo seguir os passos anteriormente e para o consumo da api, criar alguns dados no banco de dados seguindo os endpoints abaixo, disponibilizado na collection para o [Insomnia](https://github.com/tharyckgusmao/parking-project/diagrams/parking_collection.json), ou sendo possivel a execução e consumo pela docs no swagger, acessando o endpoint do projeto "/docs":
 
+ - Usuario para teste (email:teste@gmail.com, senha: aA#123456)
  - Criar uma compania/estabelecimento endpoint de [Post]{{ _.api }}/company
  - Criar um cusuario associando a uma compania endpoint de [Post]{{ _.api }}/user
  - Realizar o fluxo de autenticação e seguir o consumo para demais endpoints

@@ -7,7 +7,9 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
+import ApiSchema from 'src/shared/decorator/ApiSchemaDecorator';
 
+@ApiSchema({ name: 'UserUpdateDto' })
 export class UpdateDto {
   @IsNotEmpty()
   @IsOptional()

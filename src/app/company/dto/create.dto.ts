@@ -1,5 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, Max, MaxLength, Min, MinLength } from 'class-validator';
+import ApiSchema from 'src/shared/decorator/ApiSchemaDecorator';
+@ApiSchema({ name: 'CompanyCreateDto' })
 export class CreateDto {
   @IsNotEmpty()
   @ApiProperty()
