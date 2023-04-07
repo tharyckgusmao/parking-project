@@ -49,7 +49,7 @@ $ npm run test
 
 #### Instruções para teste
 
-Recomendo seguir os passos anteriormente e para o consumo da api, criar alguns dados no banco de dados seguindo os endpoints abaixo, disponibilizado na collection para o [Insomnia](https://github.com/tharyckgusmao/parking-project/diagrams/parking_collection.json), ou sendo possivel a execução e consumo pela docs no swagger, acessando o endpoint do projeto "/docs":
+Recomendo seguir os passos anteriormente e para o consumo da api, criar alguns dados no banco de dados seguindo os endpoints abaixo, disponibilizado na collection para o [Insomnia](https://github.com/tharyckgusmao/parking-project/blob/master/diagrams/parking_collection.json), ou sendo possivel a execução e consumo pela docs no swagger, acessando o endpoint do projeto "/docs":
 
  - Usuario para teste (email:teste@gmail.com, senha: aA#123456)
  - Criar uma compania/estabelecimento endpoint de [Post]{{ _.api }}/company
@@ -62,7 +62,7 @@ As entradas de veiculo e saida no estacionamento e realizada atraves dos endpoin
 
 ### Modelo e Estrutura de dados
 
-A modelagem dos dados para o banco se encontra no arquivo de [DBML](https://github.com/tharyckgusmao/parking-project/diagrams/modeling.dbml) podendo ser aplicado no [Diagram](https://dbdiagram.io/home), conforme imagem abaixo:
+A modelagem dos dados para o banco se encontra no arquivo de [DBML](https://github.com/tharyckgusmao/parking-project/blob/master/diagrams/modeling.dbml) podendo ser aplicado no [Diagram](https://dbdiagram.io/home), conforme imagem abaixo:
 
 ![diagram](https://user-images.githubusercontent.com/11817448/230642879-a9d08a89-37dc-4545-ada9-16c8c89d5dff.png)
 
