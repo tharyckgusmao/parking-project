@@ -90,6 +90,7 @@ export class ReportsService {
               filter?.range || '7 DAY'
             }) AND
             p.vehicle_id = "${vehicleId}"
+            	ORDER BY p.created_at DESC 
             )
         SELECT 
         d.day_group,
@@ -100,8 +101,10 @@ export class ReportsService {
                     cte1.vehicle_id,
             SUM(UNIX_TIMESTAMP(cte2.date_diff) -  UNIX_TIMESTAMP(cte1.date_diff))  as parked_time
             
-            FROM cte as cte1
-            INNER JOIN cte cte2 ON cte1.rownum = cte2.rownum - 1 AND (cte1.event = 1 AND cte2.event = 0)
+                FROM cte as cte1
+              INNER JOIN cte cte2 ON cte1.rownum = cte2.rownum - 1
+              AND cte1.vehicle_id = cte2.vehicle_id
+              AND cte1.event = 0 AND cte2.event = 1
         
         ) as d
         GROUP BY d.day_group
@@ -137,7 +140,7 @@ export class ReportsService {
         ? `DATE("${filter.endOfDate}")`
         : '(NOW() - INTERVAL 7 DAY)'
     } AND p.company_id = "${companyId}"
-
+      ORDER BY p.created_at DESC 
             ),
         dates_group as (
 
@@ -150,9 +153,10 @@ export class ReportsService {
                         cte1.vehicle_id,
                 SUM(UNIX_TIMESTAMP(cte2.date_diff) -  UNIX_TIMESTAMP(cte1.date_diff))  as parked_time
                 
-                FROM cte as cte1
-                INNER JOIN cte cte2 ON cte1.rownum = cte2.rownum - 1 AND cte1.vehicle_id = cte2.vehicle_id AND (cte1.event = 1 AND cte2.event = 0)
-            
+              FROM cte as cte1
+              INNER JOIN cte cte2 ON cte1.rownum = cte2.rownum - 1
+              AND cte1.vehicle_id = cte2.vehicle_id
+              AND cte1.event = 0 AND cte2.event = 1
             ) as d
             GROUP BY d.day_group
             ORDER BY d.day_group ASC
