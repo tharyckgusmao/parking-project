@@ -142,6 +142,13 @@ Ver exemplos de payload de body no swagger ou na collection
 - [GET] {{ _.api }}/parking/company/{{company_id}}/range -> Listagem de veiculos que consumiram o estacionamento em um periodo, suporte a range de datas;
 - [GET] {{ _.api }}/parking/company/{{company_id}}/vehicle/{{vehicle_id}}/events-> Listagem de eventos realizados por um veiculo, entrada, saida;
 
+### Extras
+Criei uma Poc para materializar o conceito que esperava para aplicar os relatorios, ainda precisam de alguns ajustes, mas da para ser ter uma ideia do esperado [ACESSO](https://parking-painel.fly.dev/listagem)  para acesso utilizar o mesmo usuario e senha.
+
+![image](https://user-images.githubusercontent.com/11817448/230694913-68efa2a4-c434-4170-9934-b181cfec5b98.png)
+
+
+
 ### Faltas e Criticas
 - GCP
 - Adicionar Testes 2E2
